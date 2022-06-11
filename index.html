@@ -354,32 +354,32 @@
             width: 70px;
             margin-left: auto;
             margin-right: auto;
-            top: 85.4%;
+            top: 84%;
         }
 
         .main-screen .remnant-open-beta-NvSrAy {
-			background-color: transparent;
-			color: #ffffff;
-			font-family: var(--font-family-inter);
-			font-size: 86px;
-			font-style: normal;
-			font-weight: 300;
-			letter-spacing: 0.00px;
-			line-height: normal;
-			mix-blend-mode: normal;
-			position: relative;
-			text-align: center;
+            background-color: transparent;
+            color: #ffffff;
+            font-family: var(--font-family-inter);
+            font-size: 86px;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: 0.00px;
+            line-height: normal;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: center;
             margin-left: auto;
             margin-right: auto;
             margin-top: 15%;
-		}
+        }
 
-		.main-screen .remnant-open-beta-NvSrAy.animate-enter {
-			animation: animate-enter-frames 2.00s ease-in-out 1.00s 1 normal forwards;
-			display: block;
-			opacity: 0;
-			transform: scale(0.9);
-		}
+        .main-screen .remnant-open-beta-NvSrAy.animate-enter {
+            animation: animate-enter-frames 2.00s ease-in-out 1.00s 1 normal forwards;
+            display: block;
+            opacity: 0;
+            transform: scale(0.9);
+        }
 
         .main-screen .bottom-btn-VxPVnb:hover {
             transform: translate(0, -5px);
@@ -401,15 +401,15 @@
         .main-screen .playnow-VxPVnb {
             background-color: transparent;
             cursor: pointer;
-            height: 55px;
+            height: 45px;
             overflow: hidden;
             pointer-events: auto;
             position: relative;
             transition: all 0.5s ease;
-            width: 220px;
+            width: 190px;
             margin-left: auto;
             margin-right: auto;
-            top: 83%;
+            top: 81%;
         }
 
         .main-screen .playnow-VxPVnb:hover {
@@ -419,12 +419,12 @@
         .main-screen .btn-YWyfCx {
             background-color: #0084ff;
             border-radius: 15px;
-            height: 55px;
+            height: 45px;
             left: 0px;
             mix-blend-mode: normal;
             position: absolute;
             top: 0px;
-            width: 220px;
+            width: 190px;
         }
 
         .main-screen .title-YWyfCx {
@@ -441,8 +441,8 @@
             mix-blend-mode: normal;
             position: absolute;
             text-align: center;
-            top: 15px;
-            width: 220px;
+            top: 11px;
+            width: 190px;
         }
 
         .main-screen .buttons-VxPVnb {
@@ -452,7 +452,7 @@
             width: 136px;
             margin-left: auto;
             margin-right: auto;
-            top: 84.4%;
+            top: 82.6%;
         }
 
         .main-screen .social4-1o1xv2 {
@@ -610,52 +610,57 @@
             top: 0px;
             width: 25px;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
     <style>
-    .frame-1 {
-        background-color: #000000;
-        height: 100%;
-        mix-blend-mode: normal;
-        overflow: hidden;
-        overflow-x: hidden;
-        position: relative;
-        width: 100%;
-    }
+        .frame-1 {
+            background-color: #000000;
+            height: 100%;
+            mix-blend-mode: normal;
+            overflow: hidden;
+            overflow-x: hidden;
+            position: relative;
+            width: 100%;
+        }
 
-    .frame-1 .coming-soon-VxPVnb {
-        display: block;
-        height: 100%;
-        opacity: 100%;
-        overflow: hidden;
-        position: relative;
-        transform: scale(0.9);
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
+        .frame-1 .coming-soon-VxPVnb {
+            display: block;
+            height: 100%;
+            opacity: 100%;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
 
-    .frame-1 .text-7jh1tP {
-        color: #ffffff;
-        font-family: var(--font-family-inter);
-        font-size: var(--font-size-m);
-        font-style: normal;
-        font-weight: 300;
-        height: 100%;
-        left: 0px;
-        letter-spacing: 0.00px;
-        line-height: normal;
-        mix-blend-mode: normal;
-        position: absolute;
-        text-align: center;
-        top: -1px;
-        width: 100%;
-    }
-</style>
+        .frame-1 .text-7jh1tP {
+            color: #ffffff;
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-m);
+            font-style: normal;
+            font-weight: 300;
+            height: 100%;
+            left: 0px;
+            letter-spacing: 0.00px;
+            line-height: normal;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: center;
+            top: -1px;
+            width: 100%;
+        }
+    </style>
     <script id="anime-js-script" src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"
         integrity="sha256-98Q574VkbV+PkxXCKSgL6jVq9mrVbS7uCdA+vt0sLS8=" crossorigin="anonymous"></script>
     <script id="imgloaded-js-script" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
     <title>REMNANT</title>
 </head>
@@ -666,38 +671,40 @@
                 src="./img/background.png">
             <div class="playnow-VxPVnb smart-layers-pointers" data-id="1:8">
                 <div class="btn-YWyfCx" data-id="1:6"></div>
-                <h1 class="title-YWyfCx valign-text-middle animate-enter" data-id="1:9">PLAY NOW</h1>
+                <h1 class="title-YWyfCx valign-text-middle animate-enter" data-id="1:9">BUY REMNANT</h1>
             </div>
             <div class="buttons-VxPVnb" data-id="4:483">
-                <div class="social4-1o1xv2 smart-layers-pointers" data-id="4:472">
+                <div onclick="location.href='https://discord.gg/ZSGxwK5P6e';" class="social4-1o1xv2 smart-layers-pointers" data-id="4:472">
                     <div class="rectangle-1-jZEzMZ" data-id="4:466"></div><img class="sociallogo4-jZEzMZ"
                         data-id="4:482" src="./img/socials/discord.png">
                 </div>
-                <div class="social3-1o1xv2 smart-layers-pointers" data-id="4:473">
+                <div onclick="location.href='https://t.me/screw_dev';" class="social3-1o1xv2 smart-layers-pointers" data-id="4:473">
                     <div class="rectangle-1-OdusmC" data-id="4:474"></div><img class="sociallogo3-OdusmC"
                         data-id="4:481" src="./img/socials/telegram.png">
                 </div>
-                <div class="social2-1o1xv2 smart-layers-pointers" data-id="4:475">
+                <div onclick="location.href='';" class="social2-1o1xv2 smart-layers-pointers" data-id="4:475">
                     <div class="rectangle-1-qNzAkd" data-id="4:476"></div><img class="sociallogo2-qNzAkd"
                         data-id="4:480" src="./img/socials/instagram.png">
                 </div>
-                <div class="social1-1o1xv2 smart-layers-pointers" data-id="4:477">
+                <div onclick="location.href='';" class="social1-1o1xv2 smart-layers-pointers" data-id="4:477">
                     <div class="rectangle-1-l1oV8Z" data-id="4:478"></div><img class="sociallogo1-l1oV8Z"
                         data-id="4:479" src="./img/socials/youtube.png">
                 </div>
             </div>
-            <div class="bottom-btn-VxPVnb smart-layers-pointers" data-id="5:486"><img
+            <div class="bottom-btn-VxPVnb smart-layers-pointers" data-id="5:486"><img onclick="location.href='#price';"
                     class="bottom-btn-img-zqxklK smart-layers-pointers" data-id="5:485" src="./img/arrow.svg">
             </div>
-            <h1 class="remnant-open-beta-NvSrAy valign-text-middle animate-enter" data-id="6:489">REMNANT<br><font size="2px">OPEN BETA</font></h1>
+            <h1 class="remnant-open-beta-NvSrAy valign-text-middle animate-enter" data-id="6:489">REMNANT<br>
+                <font size="2px">OPEN BETA</font>
+            </h1>
         </div>
     </section>
-    <section>
-        <div class="frame-1 screen " data-id="1:2">
-			<div class="coming-soon-VxPVnb animate-enter" data-id="6:487">
-				<h1 class="text-7jh1tP valign-text-middle" data-id="6:489">COMING SOON...</h1>
-			</div>
-		</div>
+    <section id="price">
+        <div class="frame-1 screen" data-id="1:2">
+            <div class="coming-soon-VxPVnb animate-enter" data-id="6:487">
+                <h1 class="text-7jh1tP valign-text-middle" data-id="6:489">COMING SOON...</h1>
+            </div>
+        </div>
     </section>
 </body>
 
