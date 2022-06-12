@@ -616,7 +616,7 @@
         }
     </style>
     <style>
-        .frame-1 {
+        .news-page {
             background-color: #060f25;
             height: 100%;
             mix-blend-mode: normal;
@@ -626,34 +626,160 @@
             width: 100%;
         }
 
-        .frame-1 .coming-soon-VxPVnb {
-            display: block;
+        .news-page .bg-news-VxPVnb {
+            background-color: transparent;
             height: 100%;
-            opacity: 100%;
-            overflow: hidden;
-            position: relative;
-            transform: scale(0.9);
+            left: 0px;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            position: absolute;
+            top: 0px;
             width: 100%;
-            margin-left: auto;
-            margin-right: auto;
         }
 
+        .news-page .update-image-VxPVnb {
+            background-color: transparent;
+            cursor: default;
+            height: 540px;
+            margin-left: auto;
+            margin-right: auto;
+            pointer-events: auto;
+            position: relative;
+            top: 10%;
+            transition: all 0.2s ease;
+            width: 890px;
+        }
 
-        .frame-1 .text-7jh1tP {
-            color: #ffffff;
-            font-family: var(--font-family-inter);
-            font-size: var(--font-size-m);
+        .news-page .update-image-VxPVnb:hover {
+            transform: scale(1.1);
+        }
+
+        .news-page .description-VxPVnb {
+            background-color: transparent;
+            border-radius: 11px;
+            height: 344px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+            position: relative;
+            top: -5%;
+            width: 701px;
+        }
+
+        .news-page .description-bar-RF0yv6 {
+            background-color: #213059;
+            height: 344px;
+            left: 0px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 0px;
+            width: 701px;
+        }
+
+        .news-page .description-title-RF0yv6 {
+            background-color: transparent;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 32px;
             font-style: normal;
-            font-weight: 300;
-            height: 100%;
+            font-weight: 500;
+            height: 71px;
             left: 0px;
             letter-spacing: 0.00px;
             line-height: normal;
             mix-blend-mode: normal;
             position: absolute;
             text-align: center;
-            top: -1px;
-            width: 100%;
+            top: 50px;
+            width: 701px;
+        }
+
+        .news-page .line-RF0yv6 {
+            background-color: transparent;
+            cursor: default;
+            height: 1px;
+            left: 272px;
+            pointer-events: auto;
+            position: absolute;
+            top: 110px;
+            transition: all 0.2s ease;
+            width: 156px;
+        }
+
+        .news-page .description-text-RF0yv6 {
+            background-color: transparent;
+            color: white;
+            font-family: var(--font-family-inter);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            height: 86px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.00px;
+            line-height: normal;
+            mix-blend-mode: normal;
+            position: relative;
+            text-align: center;
+            top: 164px;
+            width: 553px;
+        }
+
+        .news-page .likes-RF0yv6 {
+            background-color: transparent;
+            border-radius: 7px;
+            cursor: pointer;
+            height: 30px;
+            left: 630px;
+            overflow: hidden;
+            pointer-events: auto;
+            position: absolute;
+            top: 294px;
+            transition: all 0.2s ease;
+            width: 59px;
+        }
+
+        .news-page .likes-RF0yv6:hover {
+            transform: scale(0.9);
+        }
+
+        .news-page .likes-bar-oDj5kd {
+            background-color: #0084ff;
+            height: 30px;
+            left: 0px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 0px;
+            width: 59px;
+        }
+
+        .news-page .like-icon-oDj5kd {
+            background-color: transparent;
+            color: white;
+            height: 15px;
+            left: 7px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 7px;
+            width: 15px;
+        }
+
+        .news-page .count-oDj5kd {
+            background-color: transparent;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            height: 19px;
+            left: 25px;
+            letter-spacing: 0.00px;
+            line-height: normal;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: right;
+            top: 4px;
+            width: auto;
         }
     </style>
     <script id="anime-js-script" src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"
@@ -711,10 +837,29 @@
         </div>
     </section>
     <section id="price">
-        <div class="frame-1 screen" data-id="1:2">
-            <div class="coming-soon-VxPVnb animate-enter" data-id="6:487">
-                <h1 class="text-7jh1tP valign-text-middle" data-id="6:489">COMING SOON...</h1>
+        <div class="news-page screen " data-id="1:2"><img class="bg-news-VxPVnb" data-id="20:3"
+                src="https://cdn.animaapp.com/projects/62a36cd10109a369816b931a/releases/62a525b1788c4b199b26b380/img/bg-news@1x.png"">
+            <div class=" update-image-VxPVnb smart-layers-pointers">
+            <img data-id="11:2" src="./img/update.png">
+        </div>
+        <div class="description-VxPVnb" data-id="11:8">
+            <div class="description-bar-RF0yv6" data-id="11:10"></div>
+            <h1 class="description-title-RF0yv6 valign-text-middle" data-id="11:11">THE VEHICLES UPDATE</h1><img
+                class="line-RF0yv6 smart-layers-pointers" data-id="11:12" src="./img/line.svg">
+            <p class="description-text-RF0yv6 valign-text-middle" data-id="11:13">Lorem Ipsum is simply dummy text
+                of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <div class="likes-RF0yv6 smart-layers-pointers" data-id="11:14">
+                <div class="likes-bar-oDj5kd" data-id="11:15"></div>
+                <img class="like-icon-oDj5kd" data-id="11:16"
+                    src="./img/like.png">
+                <div class="count-oDj5kd valign-text-middle" data-id="11:17">17K</div>
             </div>
+        </div>
         </div>
     </section>
 </body>
