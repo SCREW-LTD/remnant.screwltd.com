@@ -1,6 +1,23 @@
 <html>
 
 <head>
+    <title>REMNANT</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <style type="text/css">
+        .turbo-progress-bar {
+            position: fixed;
+            display: block;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #0076ff;
+            z-index: 9999;
+            transition:
+                width 300ms ease-out,
+                opacity 150ms 150ms ease-in;
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
     <style id="st_globalStyles">
         /* SCROLLBAR */
 
@@ -79,14 +96,45 @@
             transform: none !important;
         }
     </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1920, maximum-scale=1.0">
+    <style id="hotspots-styles">
+        .hotspot {
+            position: absolute;
+            border: 1px solid #2a9fd8;
+            background: rgba(0, 173, 255, 0.54);
+            opacity: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+    <script>
+        function border(color) {
+            document.getElementById('white_btn').style.backgroundColor = color;
+        }
+        function text(color) {
+            document.getElementById('white_btn_text').style.color = color;
+        } 
+    </script>
     <style>
         @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
-        @import url("https://fonts.googleapis.com/css?family=Inter:300");
+        @import url("https://fonts.googleapis.com/css?family=Inter:300,500,600");
 
         /* The following line is used to measure usage of this code in production. For more info see our usage billing page */
         @import url("https://px.animaapp.com/62a36ca626273055208f6655.62a36ca7537bee57e8258984.9YnTRGZ.hch.png");
 
+
+        .btn-outline {
+            border: 2px solid black;
+            background-color: white;
+            color: black;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            border-color: #FFF;
+            color: white;
+        }
 
         .screen textarea:focus,
         .screen input:focus {
@@ -201,6 +249,11 @@
             animation: reveal 0.3s ease-in-out 1 reverse forwards;
             display: block;
             opacity: 1;
+            pointer-events: none;
+        }
+
+        .overlay.animate-disappear * {
+            pointer-events: none;
         }
 
         @keyframes reveal {
@@ -272,596 +325,991 @@
         }
 
         :root {
+            --black: #000000;
+            --white: #ffffff;
+            --white-2: #ffffffb2;
 
-            --font-size-m: 25px;
+            --font-size-l: 96px;
+            --font-size-m: 20px;
+            --font-size-s: 14px;
 
             --font-family-inter: "Inter", Helvetica;
         }
 
+        .inter-light-white-20px {
+            color: var(--white-2);
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-m);
+            font-style: normal;
+            font-weight: 300;
+        }
 
-        /* screen - main-screen */
+        :root {}
 
-        .main-screen {
-            background-color: #060f25;
+
+        /* screen - frame-1 */
+
+        .frame-1 {
+            background-color: var(--black);
+            border: 1px none;
             height: 100%;
             mix-blend-mode: normal;
             overflow: hidden;
             overflow-x: hidden;
-            position: relative;
+            position: absolute;
             width: 100%;
         }
 
-        .main-screen .bg-VxPVnb {
+        .frame-1 .background-VxPVnb {
             background-color: transparent;
-            display: block;
-            filter: blur(10px);
             height: 100%;
             left: 0px;
             mix-blend-mode: normal;
             object-fit: cover;
-            opacity: 0;
+            opacity: 0.4;
             position: absolute;
             top: 0px;
             width: 100%;
         }
 
-        .main-screen .bg-VxPVnb.animate-enter {
-            animation: animate-enter-frames 1.00s ease-in-out 0.00s 1 normal forwards;
+        .frame-1 .top-VxPVnb {
+            background-color: transparent;
+            border: 1px none;
+            height: 100px;
+            left: 0px;
+            overflow: hidden;
+            position: relative;
+            top: 3%;
+            width: 100%;
+        }
+
+        .frame-1 .left-F3Iuu3 {
+            background-color: transparent;
+            border: 1px none;
             display: block;
-            filter: blur(10px);
+            height: 100px;
+            left: 40px;
             opacity: 0;
+            overflow: hidden;
+            position: relative;
+            top: 0px;
+            transform: translate(0, -25px);
+            width: 547px;
+        }
+
+        .frame-1 .left-F3Iuu3.animate-enter {
+            animation: animate-enter-frames 0.50s ease-in-out 0.30s 1 normal forwards;
+            display: block;
+            opacity: 0;
+            transform: translate(0, -25px);
         }
 
         @keyframes animate-enter-frames {
             from {
                 opacity: 0;
-                filter: blur(10px);
+                transform: translate(0, -25px);
             }
 
             to {
                 opacity: 1;
-                filter: none;
+                transform: translate(0, 0);
             }
         }
 
-        .main-screen .title-YWyfCx.animate-enter {
-            animation: animate-enter-frames 0.50s ease-in-out 0.00s 1 normal forwards;
-            display: block;
-            filter: blur(10px);
-            opacity: 0;
+        .frame-1 .top_logo-HGz26R {
+            background-color: transparent;
+            height: 100px;
+            left: 0px;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            position: absolute;
+            top: 0px;
+            width: 100px;
         }
 
-        @keyframes animate-enter-frames {
-            from {
-                opacity: 0;
-                filter: blur(10px);
-            }
-
-            to {
-                opacity: 1;
-                filter: none;
-            }
-        }
-
-        .main-screen .bottom-btn-VxPVnb {
+        .frame-1 .store-HGz26R {
             background-color: transparent;
             cursor: pointer;
-            height: 35px;
-            overflow: hidden;
-            pointer-events: auto;
-            position: relative;
-            transition: all 1s ease;
-            width: 70px;
-            margin-left: auto;
-            margin-right: auto;
-            top: 84%;
-        }
-
-        .main-screen .remnant-open-beta-NvSrAy {
-            background-color: transparent;
-            color: #ffffff;
-            font-family: var(--font-family-inter);
-            font-size: 86px;
-            font-style: normal;
-            font-weight: 300;
+            height: 24px;
+            left: 135px;
             letter-spacing: 0.00px;
             line-height: normal;
             mix-blend-mode: normal;
-            position: relative;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 15%;
-        }
-
-        .main-screen .remnant-open-beta-NvSrAy.animate-enter {
-            animation: animate-enter-frames 2.00s ease-in-out 1.00s 1 normal forwards;
-            display: block;
-            opacity: 0;
-            transform: scale(0.9);
-        }
-
-        .main-screen .bottom-btn-VxPVnb:hover {
-            transform: translate(0, -5px);
-        }
-
-        .main-screen .bottom-btn-img-zqxklK {
-            background-color: transparent;
-            cursor: pointer;
-            height: 25px;
-            left: 11px;
-            mix-blend-mode: normal;
             pointer-events: auto;
-            position: absolute;
-            top: 4px;
-            transition: all 1s ease;
-            width: 47px;
-        }
-
-        .main-screen .playnow-VxPVnb {
-            background-color: transparent;
-            cursor: pointer;
-            height: 45px;
-            overflow: hidden;
-            pointer-events: auto;
-            position: relative;
-            transition: all 0.5s ease;
-            width: 190px;
-            margin-left: auto;
-            margin-right: auto;
-            top: 81%;
-        }
-
-        .main-screen .playnow-VxPVnb:hover {
-            transform: scale(1.1);
-        }
-
-        .main-screen .btn-YWyfCx {
-            background-color: #0084ff;
-            border-radius: 15px;
-            height: 45px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 190px;
-        }
-
-        .main-screen .title-YWyfCx {
-            background-color: transparent;
-            color: #ffffff;
-            font-family: var(--font-family-inter);
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 300;
-            height: 30px;
-            left: 0px;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
             position: absolute;
             text-align: center;
-            top: 11px;
-            width: 190px;
-        }
-
-        .main-screen .buttons-VxPVnb {
-            background-color: transparent;
-            height: 25px;
-            position: relative;
-            width: 136px;
-            margin-left: auto;
-            margin-right: auto;
-            top: 82.6%;
-        }
-
-        .main-screen .social4-1o1xv2 {
-            background-color: transparent;
-            cursor: pointer;
-            height: 25px;
-            left: 0px;
-            overflow: hidden;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.5s ease;
-            width: 25px;
-        }
-
-        .main-screen .social4-1o1xv2:hover {
-            transform: translate(0, -5px);
-        }
-
-        .main-screen .rectangle-1-jZEzMZ {
-            background-color: #0084ff78;
-            border-radius: 85px;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        .main-screen .sociallogo4-jZEzMZ {
-            background-color: transparent;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        .main-screen .social3-1o1xv2 {
-            background-color: transparent;
-            cursor: pointer;
-            height: 25px;
-            left: 37px;
-            overflow: hidden;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.5s ease;
-            width: 25px;
-        }
-
-        .main-screen .social3-1o1xv2:hover {
-            transform: translate(0, -5px);
-        }
-
-        .main-screen .rectangle-1-OdusmC {
-            background-color: #0084ff78;
-            border-radius: 85px;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        .main-screen .sociallogo3-OdusmC {
-            background-color: transparent;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        .main-screen .social2-1o1xv2 {
-            background-color: transparent;
-            cursor: pointer;
-            height: 25px;
-            left: 74px;
-            overflow: hidden;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.5s ease;
-            width: 25px;
-        }
-
-        .main-screen .social2-1o1xv2:hover {
-            transform: translate(0, -5px);
-        }
-
-        .main-screen .rectangle-1-qNzAkd {
-            background-color: #0084ff78;
-            border-radius: 85px;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        .main-screen .sociallogo2-qNzAkd {
-            background-color: transparent;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        .main-screen .social1-1o1xv2 {
-            background-color: transparent;
-            cursor: pointer;
-            height: 25px;
-            left: 111px;
-            overflow: hidden;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.5s ease;
-            width: 25px;
-        }
-
-        .main-screen .social1-1o1xv2:hover {
-            transform: translate(0, -5px);
-        }
-
-        .main-screen .rectangle-1-l1oV8Z {
-            background-color: #0084ff78;
-            border-radius: 85px;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        .main-screen .sociallogo1-l1oV8Z {
-            background-color: transparent;
-            height: 25px;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            position: absolute;
-            top: 0px;
-            width: 25px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-    <style>
-        .news-page {
-            background-color: #060f25;
-            height: 100%;
-            mix-blend-mode: normal;
-            overflow: hidden;
-            overflow-x: hidden;
-            position: relative;
-            width: 100%;
-        }
-
-        .news-page .bg-news-VxPVnb {
-            background-color: transparent;
-            height: 100%;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            position: absolute;
-            top: 0px;
-            width: 100%;
-        }
-
-        .news-page .update-image-VxPVnb {
-            background-color: transparent;
-            cursor: default;
-            height: 540px;
-            margin-left: auto;
-            margin-right: auto;
-            pointer-events: auto;
-            position: relative;
-            top: 10%;
+            top: 37px;
             transition: all 0.2s ease;
-            width: 890px;
-        }
-
-        .news-page .update-image-VxPVnb:hover {
-            transform: scale(1.1);
-        }
-
-        .news-page .description-VxPVnb {
-            background-color: transparent;
-            border-radius: 11px;
-            height: 344px;
-            margin-left: auto;
-            margin-right: auto;
-            overflow: hidden;
-            position: relative;
-            top: -5%;
-            width: 701px;
-        }
-
-        .news-page .description-bar-RF0yv6 {
-            background-color: #213059;
-            height: 344px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 701px;
-        }
-
-        .news-page .description-title-RF0yv6 {
-            background-color: transparent;
-            color: white;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 500;
-            height: 71px;
-            left: 0px;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
-            position: absolute;
-            text-align: center;
-            top: 50px;
-            width: 701px;
-        }
-
-        .news-page .line-RF0yv6 {
-            background-color: transparent;
-            cursor: default;
-            height: 1px;
-            left: 272px;
-            pointer-events: auto;
-            position: absolute;
-            top: 110px;
-            transition: all 0.2s ease;
-            width: 156px;
-        }
-
-        .news-page .description-text-RF0yv6 {
-            background-color: transparent;
-            color: white;
-            font-family: var(--font-family-inter);
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-            height: 86px;
-            margin-left: auto;
-            margin-right: auto;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
-            position: relative;
-            text-align: center;
-            top: 164px;
-            width: 553px;
-        }
-
-        .news-page .likes-RF0yv6 {
-            background-color: transparent;
-            border-radius: 7px;
-            cursor: pointer;
-            height: 30px;
-            left: 630px;
-            overflow: hidden;
-            pointer-events: auto;
-            position: absolute;
-            top: 294px;
-            transition: all 0.2s ease;
-            width: 59px;
-        }
-
-        .news-page .likes-RF0yv6:hover {
-            transform: scale(0.9);
-        }
-
-        .news-page .likes-bar-oDj5kd {
-            background-color: #0084ff;
-            height: 30px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 59px;
-        }
-
-        .news-page .like-icon-oDj5kd {
-            background-color: transparent;
-            color: white;
-            height: 15px;
-            left: 7px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 7px;
-            width: 15px;
-        }
-
-        .news-page .count-oDj5kd {
-            background-color: transparent;
-            color: white;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 500;
-            height: 19px;
-            left: 25px;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
-            position: absolute;
-            text-align: right;
-            top: 4px;
             width: auto;
         }
-    </style>
-    <script id="anime-js-script" src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"
-        integrity="sha256-98Q574VkbV+PkxXCKSgL6jVq9mrVbS7uCdA+vt0sLS8=" crossorigin="anonymous"></script>
-    <script id="imgloaded-js-script" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
-    <title>REMNANT</title>
 
-    <meta name="title" content="REMNANT">
-    <meta name="description"
-        content="REMNANT is a role-play game in which you need to communicate, work, have fun and, of course, participate in conflicts.">
-    <meta name="keywords"
-        content="remnant, game, REMNANT, GAME, remnant from the ashes, souls-like, darksiders, gunfire games, games likes dark souls, bloodborne, rpg, shooter rpg, fps, third-person shooter, role-playing game, diablo shooter, soulsborne, from software, dark souls, demon's souls, darksiders iii, guide, commentary, souls shooter, immortal unchained, terramantis, ign, gamespot, gameranx, warframe, ixillis, beginner's guide, tips, how to, walkthrough, best traits, powerful builds, best weapons, best armor">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
+        .frame-1 .store-HGz26R:hover {
+            color: #ffffff
+        }
+
+        .frame-1 .news-HGz26R {
+            background-color: transparent;
+            cursor: pointer;
+            height: 24px;
+            left: 220px;
+            letter-spacing: 0.00px;
+            line-height: normal;
+            mix-blend-mode: normal;
+            pointer-events: auto;
+            position: absolute;
+            text-align: center;
+            top: 37px;
+            transition: all 0.2s ease;
+            width: auto;
+        }
+
+        .frame-1 .news-HGz26R:hover {
+            color: #ffffff
+        }
+
+        .frame-1 .media-HGz26R {
+            background-color: transparent;
+            cursor: pointer;
+            height: 24px;
+            left: 309px;
+            letter-spacing: 0.00px;
+            line-height: normal;
+            mix-blend-mode: normal;
+            pointer-events: auto;
+            position: absolute;
+            text-align: center;
+            top: 37px;
+            transition: all 0.2s ease;
+            width: auto;
+        }
+
+        .frame-1 .media-HGz26R:hover {
+            color: #ffffff
+        }
+
+        .frame-1 .developers-HGz26R {
+            background-color: transparent;
+            cursor: pointer;
+            height: 24px;
+            left: 402px;
+            letter-spacing: 0.00px;
+            line-height: normal;
+            mix-blend-mode: normal;
+            pointer-events: auto;
+            position: absolute;
+            text-align: center;
+            top: 37px;
+            transition: all 0.2s ease;
+            width: auto;
+        }
+
+        .frame-1 .developers-HGz26R:hover {
+            color: #ffffff
+        }
+
+        .frame-1 .logo_right-VxPVnb {
+            background-color: transparent;
+            height: 80%;
+            right: 120px;
+            margin: 0 auto;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+        }
+
+        .frame-1 .platforms-VxPVnb {
+            background-color: transparent;
+            border: 1px none;
+            display: block;
+            height: 58px;
+            opacity: 0;
+            overflow: hidden;
+            position: relative;
+            top: 480px;
+            transform: translate(0, -25px);
+            width: 554px;
+        }
+
+        .frame-1 .platforms-VxPVnb.animate-enter2 {
+            animation: animate-enter2-frames 0.50s ease-in-out 0.55s 1 normal forwards;
+            display: block;
+            opacity: 0;
+            transform: translate(0, -25px);
+        }
+
+        @keyframes animate-enter2-frames {
+            from {
+                opacity: 0;
+                transform: translate(0, -25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        .frame-1 .icons-tGcCiA {
+            background-color: transparent;
+            border: 1px none;
+            display: block;
+            height: 28px;
+            left: 0px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            top: 30px;
+            width: 554px;
+        }
+
+        .frame-1 .icons-tGcCiA.animate-enter1 {
+            animation: animate-enter1-frames 0.70s ease-in-out 1.00s 1 normal forwards;
+            display: block;
+            opacity: 0;
+        }
+
+        @keyframes animate-enter1-frames {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .frame-1 .windows-S0nGDw {
+            background-color: transparent;
+            cursor: pointer;
+            height: 28px;
+            left: 0px;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            pointer-events: auto;
+            position: absolute;
+            top: 0px;
+            transition: all 0.3s ease;
+            width: 150px;
+        }
+
+        .frame-1 .windows-S0nGDw:hover {
+            transform: scale(0.95);
+        }
+
+        .frame-1 .xbox-S0nGDw {
+            background-color: transparent;
+            cursor: pointer;
+            height: 28px;
+            left: 175px;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            pointer-events: auto;
+            position: absolute;
+            top: 0px;
+            transition: all 0.3s ease;
+            width: 91px;
+        }
+
+        .frame-1 .xbox-S0nGDw:hover {
+            transform: scale(0.95);
+        }
+
+        .frame-1 .switch-S0nGDw {
+            background-color: transparent;
+            cursor: pointer;
+            height: 28px;
+            left: 291px;
+            mix-blend-mode: normal;
+            pointer-events: auto;
+            position: absolute;
+            top: 0px;
+            transition: all 0.3s ease;
+            width: 124px;
+        }
+
+        .frame-1 .switch-S0nGDw:hover {
+            transform: scale(0.95);
+        }
+
+        .frame-1 .steam-S0nGDw {
+            background-color: transparent;
+            cursor: pointer;
+            height: 28px;
+            left: 440px;
+            mix-blend-mode: normal;
+            object-fit: cover;
+            pointer-events: auto;
+            position: absolute;
+            top: 0px;
+            transition: all 0.3s ease;
+            width: 114px;
+        }
+
+        .frame-1 .steam-S0nGDw:hover {
+            transform: scale(0.95);
+        }
+
+        @media (max-aspect-ratio: 4/3) {
+            .forn-three {
+                display: none;
+            }
+        }
+
+        .frame-1 .available-on-tGcCiA {
+            background-color: transparent;
+            color: var(--white-2);
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-s);
+            font-style: normal;
+            font-weight: 300;
+            height: 15px;
+            left: 0px;
+            letter-spacing: 0.00px;
+            line-height: 15.4px;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: center;
+            top: -1px;
+            white-space: nowrap;
+            width: auto;
+        }
+
+        @media (pointer:none),
+        (pointer:coarse) {
+
+            html,
+            body {
+                margin: 0;
+                height: 100%;
+                overflow: hidden
+            }
+
+            .mobileScreen {
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width: 1599px) {
+            .smallScreen {
+                display: none;
+            }
+        }
+
+        @media only screen and (max-width: 1281px) {
+            .medScreen {
+                display: none;
+            }
+        }
+
+        .frame-1 .info-VxPVnb {
+            background-color: transparent;
+            border: 1px none;
+            height: 600px;
+            left: 90px;
+            overflow: hidden;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 636px;
+        }
+
+        .frame-1 .btns-5bQ3Rg {
+            background-color: transparent;
+            border: 1px none;
+            display: block;
+            height: 70px;
+            left: 0px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            top: 365px;
+            transform: translate(0, -25px);
+            width: 588px;
+        }
+
+        .frame-1 .btns-5bQ3Rg.animate-enter3 {
+            animation: animate-enter3-frames 0.50s ease-in-out 0.50s 1 normal forwards;
+            display: block;
+            opacity: 0;
+            transform: translate(0, -25px);
+        }
+
+        @keyframes animate-enter3-frames {
+            from {
+                opacity: 0;
+                transform: translate(0, -25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        .frame-1 .play-BR4TFE {
+            background-color: transparent;
+            border: 1px none;
+            height: 70px;
+            left: 304px;
+            overflow: hidden;
+            position: absolute;
+            top: 0px;
+            width: 284px;
+        }
+
+        .frame-1 .play-BR4TFE:hover {
+            cursor: pointer;
+        }
+
+
+        .frame-1 .rectangle-3-NJ5xRw {
+            background-color: transparent;
+            border: 2px solid;
+            border-color: var(--white);
+            border-radius: 15px;
+            height: 70px;
+            left: 0px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 0px;
+            width: 284px;
+        }
+
+        .frame-1 .play-NJ5xRw {
+            background-color: transparent;
+            color: var(--white);
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-m);
+            font-style: normal;
+            font-weight: 500;
+            height: 70px;
+            left: 0px;
+            letter-spacing: 0.00px;
+            line-height: 22.0px;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: center;
+            top: -1px;
+            width: 284px;
+        }
+
+        .frame-1 .buy-BR4TFE {
+            background-color: transparent;
+            border: 1px none;
+            height: 70px;
+            left: 0px;
+            overflow: hidden;
+            position: absolute;
+            top: 0px;
+            width: 284px;
+        }
+
+        .frame-1 .buy-BR4TFE:hover {
+            cursor: pointer;
+        }
+
+        .frame-1 .rectangle-3-S2joqj {
+            background-color: var(--white);
+            border: 2px none;
+            border-radius: 15px;
+            height: 70px;
+            left: 0px;
+            mix-blend-mode: normal;
+            position: absolute;
+            top: 0px;
+            width: 284px;
+        }
+
+        .frame-1 .buy-now-S2joqj {
+            background-color: transparent;
+            color: var(--black);
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-m);
+            font-style: normal;
+            font-weight: 500;
+            height: 70px;
+            left: 0px;
+            letter-spacing: 0.00px;
+            line-height: 22.0px;
+            mix-blend-mode: normal;
+            position: absolute;
+            text-align: center;
+            top: -1px;
+            width: 284px;
+        }
+
+        .frame-1 .it-is-a-long-establi-5bQ3Rg {
+            background-color: transparent;
+            color: var(--white);
+            display: block;
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-m);
+            font-style: normal;
+            font-weight: 300;
+            height: auto;
+            left: 0px;
+            letter-spacing: 0.00px;
+            line-height: 22.0px;
+            mix-blend-mode: normal;
+            opacity: 0;
+            position: absolute;
+            text-align: left;
+            top: 231px;
+            transform: translate(0, -25px);
+            width: 636px;
+        }
+
+        .frame-1 .it-is-a-long-establi-5bQ3Rg.animate-enter4 {
+            animation: animate-enter4-frames 0.50s ease-in-out 0.45s 1 normal forwards;
+            display: block;
+            opacity: 0;
+            transform: translate(0, -25px);
+        }
+
+        @keyframes animate-enter4-frames {
+            from {
+                opacity: 0;
+                transform: translate(0, -25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        .frame-1 .remnant-open-beta-5bQ3Rg {
+            background-color: transparent;
+            color: var(--white);
+            display: block;
+            font-family: var(--font-family-inter);
+            font-size: var(--font-size-l);
+            font-style: normal;
+            font-weight: 600;
+            height: 212px;
+            left: 0px;
+            letter-spacing: 0.00px;
+            line-height: 105.6px;
+            mix-blend-mode: normal;
+            opacity: 0;
+            position: absolute;
+            text-align: left;
+            top: -1px;
+            transform: translate(0, -25px);
+            width: auto;
+        }
+
+        .frame-1 .remnant-open-beta-5bQ3Rg.animate-enter5 {
+            animation: animate-enter5-frames 0.50s ease-in-out 0.40s 1 normal forwards;
+            display: block;
+            opacity: 0;
+            transform: translate(0, -25px);
+        }
+
+        @keyframes animate-enter5-frames {
+            from {
+                opacity: 0;
+                transform: translate(0, -25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+    </style>
+    <style id="action-links-styles">
+        @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+        #anima-interface {
+            transition: all 0.5s ease-in-out;
+        }
+
+        #anima-watermark {
+            transition: all 0.5s ease-in-out;
+            display: none;
+        }
+
+        #anima-watermark-link {
+            position: fixed;
+            bottom: 20px;
+            height: 30px;
+            border-radius: 1000px;
+            background: #3B3B3B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: width 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+            text-decoration: none;
+            color: #fff;
+            padding: 8px 16px 8px 11px;
+            font-family: Mulish, sans-serif;
+            font-size: 12px;
+        }
+
+        #anima-watermark-link .text {
+            margin-left: 6px;
+        }
+
+        .omniview-anima-action-links .link {
+            height: 30px;
+            width: 30px;
+            border-radius: 1000px;
+            background: #3B3B3B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: width 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .omniview-anima-action-links #comment-link .text,
+        .omniview-anima-action-links #code-link .text {
+            display: none;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .omniview-anima-action-links #comment-link:hover,
+        .omniview-anima-action-links #code-link:hover {
+            width: 105px;
+        }
+
+        .omniview-anima-action-links #comment-link.pop-active,
+        .omniview-anima-action-links #code-link.pop-active {
+            width: 105px;
+            background: #FF6250;
+        }
+
+        .omniview-anima-action-links #comment-link.pop-active .text,
+        .omniview-anima-action-links #code-link.pop-active .text {
+            display: block
+        }
+
+        .omniview-anima-action-links #comment-link:hover .text,
+        .omniview-anima-action-links #code-link:hover .text {
+            display: block;
+        }
+
+        .link.navigation {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            height: 32px;
+            color: #fff;
+            font-size: 12px;
+            cursor: default;
+            padding: 0 5px;
+        }
+
+        .link.navigation .icon {
+            margin: 0 6px;
+            fill: none;
+            stroke: currentColor;
+            cursor: pointer;
+        }
+
+        .link.navigation .icon.disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+
+        .link.navigation .home-icon {
+            margin-left: 6px;
+            fill: currentColor;
+            stroke: currentColor;
+            cursor: pointer;
+        }
+
+        .omniview-anima-action-links .restart {
+            height: 30px;
+            padding: 0 12px;
+            background: #3B3B3B;
+            border-radius: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #f1f1f1;
+            font-size: 12px;
+        }
+
+        .omniview-anima-action-links {
+            display: flex;
+            align-items: center;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-family: Mulish, sans-serif;
+            transition: all 0.5s ease-in-out;
+            opacity: 1;
+        }
+
+        .omniview-anima-action-links>*+* {
+            margin-right: 0;
+            margin-left: 10px;
+        }
+
+        .idle {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #popoverOpener {
+            position: absolute;
+            left: 50%;
+            margin-left: -10vw;
+            text-align: center;
+            top: 45vh;
+            width: 20vw;
+        }
+
+
+        .popover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1060;
+            display: none;
+            font-family: "sans-serif";
+            font-size: 14px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+        }
+
+        .popover.top {
+            margin-top: -12px
+        }
+
+        .popover.right {
+            margin-left: 10px
+        }
+
+        .popover.bottom {
+            margin-top: 10px
+        }
+
+        .popover.left {
+            margin-left: -10px
+        }
+
+        .popover-title {
+            padding: 8px 14px;
+            margin: 0;
+            font-size: 14px;
+            background-color: #f7f7f7;
+            border-bottom: 1px solid #ebebeb;
+            border-radius: 5px 5px 0 0
+        }
+
+        .popover-content {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+            font-family: Mulish, sans-serif;
+        }
+
+
+
+        .popover>.arrow,
+        .popover>.arrow:after {
+            position: absolute;
+            display: block;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid
+        }
+
+        .popover>.arrow {
+            border-width: 11px
+        }
+
+        .popover>.arrow:after {
+            content: "";
+            border-width: 10px
+        }
+
+        .popover.top>.arrow {
+            bottom: -11px;
+            left: 50%;
+            margin-left: -11px;
+            border-top-color: #999;
+            border-top-color: rgba(0, 0, 0, .25);
+            border-bottom-width: 0
+        }
+
+        .popover.top>.arrow:after {
+            bottom: 1px;
+            margin-left: -10px;
+            content: " ";
+            border-top-color: #fff;
+            border-bottom-width: 0
+        }
+
+        .popover.right>.arrow {
+            top: 50%;
+            left: -11px;
+            margin-top: -11px;
+            border-right-color: #999;
+            border-right-color: rgba(0, 0, 0, .25);
+            border-left-width: 0
+        }
+
+        .popover.right>.arrow:after {
+            bottom: -10px;
+            left: 1px;
+            content: " ";
+            border-right-color: #fff;
+            border-left-width: 0
+        }
+
+        .popover.bottom>.arrow {
+            top: -11px;
+            left: 50%;
+            margin-left: -11px;
+            border-top-width: 0;
+            border-bottom-color: #999;
+            border-bottom-color: rgba(0, 0, 0, .25)
+        }
+
+        .popover.bottom>.arrow:after {
+            top: 1px;
+            margin-left: -10px;
+            content: " ";
+            border-top-width: 0;
+            border-bottom-color: #fff
+        }
+
+        .popover.left>.arrow {
+            top: 50%;
+            right: -11px;
+            margin-top: -11px;
+            border-right-width: 0;
+            border-left-color: #999;
+            border-left-color: rgba(0, 0, 0, .25)
+        }
+
+        .popover.left>.arrow:after {
+            right: 1px;
+            bottom: -10px;
+            content: " ";
+            border-right-width: 0;
+            border-left-color: #fff
+        }
+
+
+
+        #anima-comment-popover,
+        #anima-code-popover {
+            background: #333333;
+            color: #fff;
+        }
+
+        #anima-comment-popover.top>.arrow,
+        #anima-comment-popover.top>.arrow:after,
+        #anima-code-popover.top>.arrow:after,
+        #anima-code-popover.top>.arrow {
+            border-top-color: #333;
+        }
+
+        #anima-comment-popover .btn,
+        #anima-code-popover .btn {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 6px 20px;
+            background: #FF6250;
+            color: #fff;
+            border-radius: 100px;
+            width: max-content;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 550px) {
+            #anima-watermark-link {
+                padding: 6px !important;
+            }
+
+            #anima-watermark-link .text {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <section>
-        <div class="main-screen screen" data-id="1:2"><img class="bg-VxPVnb animate-enter" data-id="3:465"
-                src="./img/background.png">
-            <div class="playnow-VxPVnb smart-layers-pointers" data-id="1:8">
-                <div class="btn-YWyfCx" data-id="1:6"></div>
-                <h1 class="title-YWyfCx valign-text-middle animate-enter" data-id="1:9">BUY REMNANT</h1>
-            </div>
-            <div class="buttons-VxPVnb" data-id="4:483">
-                <div onclick="location.href='https://discord.gg/ZSGxwK5P6e';"
-                    class="social4-1o1xv2 smart-layers-pointers" data-id="4:472">
-                    <div class="rectangle-1-jZEzMZ" data-id="4:466"></div><img class="sociallogo4-jZEzMZ"
-                        data-id="4:482" src="./img/socials/discord.png">
-                </div>
-                <div onclick="location.href='https://t.me/screw_dev';" class="social3-1o1xv2 smart-layers-pointers"
-                    data-id="4:473">
-                    <div class="rectangle-1-OdusmC" data-id="4:474"></div><img class="sociallogo3-OdusmC"
-                        data-id="4:481" src="./img/socials/telegram.png">
-                </div>
-                <div onclick="location.href='';" class="social2-1o1xv2 smart-layers-pointers" data-id="4:475">
-                    <div class="rectangle-1-qNzAkd" data-id="4:476"></div><img class="sociallogo2-qNzAkd"
-                        data-id="4:480" src="./img/socials/instagram.png">
-                </div>
-                <div onclick="location.href='';" class="social1-1o1xv2 smart-layers-pointers" data-id="4:477">
-                    <div class="rectangle-1-l1oV8Z" data-id="4:478"></div><img class="sociallogo1-l1oV8Z"
-                        data-id="4:479" src="./img/socials/youtube.png">
+<body style="margin: 0px; background: rgb(255, 255, 255); overflow-x: hidden;" dark-scroll=""><input type="hidden"
+        id="anPageName" name="page" value="frame-1">
+    <div class="container-center-horizontal">
+        <div class="frame-1 screen" data-id="14:2"><img class="background-VxPVnb" data-id="22:78" src="./img/bg.png"
+                alt="BACKGROUND">
+            <div class="top-VxPVnb mobileScreen" data-id="15:5">
+                <div class="left-F3Iuu3 animate-enter" data-id="22:75"><img class="top_logo-HGz26R" data-id="15:6"
+                        src="./img/top-logo@2x.png" alt="TOP_LOGO">
+                    <div class="store-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
+                        data-id="16:12">Store</div>
+                    <div class="news-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
+                        data-id="16:13">News</div>
+                    <div class="media-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
+                        data-id="16:14">Media</div>
+                    <div onclick="location.href='https://screwltd.com/'" class="developers-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
+                        data-id="16:15">Developers</div>
                 </div>
             </div>
-            <div class="bottom-btn-VxPVnb smart-layers-pointers" data-id="5:486"><img onclick="location.href='#price';"
-                    class="bottom-btn-img-zqxklK smart-layers-pointers" data-id="5:485" src="./img/arrow.svg">
+            <div class="logo_right-VxPVnb forn-three smallScreen" data-id="21:70">
+                <iframe src='anim.html' frameborder='0' width='100%' height='100%'></iframe>
             </div>
-            <h1 class="remnant-open-beta-NvSrAy valign-text-middle animate-enter" data-id="6:489">REMNANT<br>
-                <font size="2px">OPEN BETA</font>
-            </h1>
-        </div>
-    </section>
-    <section id="price">
-        <div class="news-page screen " data-id="1:2"><img class="bg-news-VxPVnb" data-id="20:3"
-                src="https://cdn.animaapp.com/projects/62a36cd10109a369816b931a/releases/62a525b1788c4b199b26b380/img/bg-news@1x.png"">
-            <div class=" update-image-VxPVnb smart-layers-pointers">
-            <img data-id="11:2" src="./img/update.png">
-        </div>
-        <div class="description-VxPVnb" data-id="11:8">
-            <div class="description-bar-RF0yv6" data-id="11:10"></div>
-            <h1 class="description-title-RF0yv6 valign-text-middle" data-id="11:11">THE VEHICLES UPDATE</h1><img
-                class="line-RF0yv6 smart-layers-pointers" data-id="11:12" src="./img/line.svg">
-            <p class="description-text-RF0yv6 valign-text-middle" data-id="11:13">Lorem Ipsum is simply dummy text
-                of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                specimen book. It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            <div class="likes-RF0yv6 smart-layers-pointers" data-id="11:14">
-                <div class="likes-bar-oDj5kd" data-id="11:15"></div>
-                <img class="like-icon-oDj5kd" data-id="11:16"
-                    src="./img/like.png">
-                <div class="count-oDj5kd valign-text-middle" data-id="11:17">17K</div>
+            <div class="info-VxPVnb" data-id="22:74">
+                <div class="btns-5bQ3Rg animate-enter3" data-id="34:81">
+                    <div onclick="location.href='https://screwltd.com/discord'" onmouseover="border('white'); text('black')" onmouseout="border('transparent'), text('white')"
+                        class="play-BR4TFE" data-id="19:57">
+                        <div id="white_btn" class="rectangle-3-NJ5xRw" data-id="19:58"></div>
+                        <div id="white_btn_text" class="play-NJ5xRw valign-text-middle" data-id="19:61">Discord</div>
+                    </div>
+                    <div class="buy-BR4TFE" data-id="18:55">
+                        <div class="rectangle-3-S2joqj" data-id="18:56"></div>
+                        <div class="buy-now-S2joqj valign-text-middle" data-id="19:59">Registration</div>
+                    </div>
+
+                </div>
+                <div class="it-is-a-long-establi-5bQ3Rg animate-enter4" data-id="17:31">Open beta test for everyone!
+                    <br>You can get a preview build by registering and joining our discord using the button below.
+                    <br>Get unique rewards for finding bugs.<br>Let's create a game together!
+                </div>
+                <h1 class="remnant-open-beta-5bQ3Rg valign-text-middle animate-enter5" data-id="17:30">REMNANT<br>OPEN
+                    BETA</h1>
+
+                <div class="platforms-VxPVnb animate-enter2" data-id="21:73">
+                    <div class="icons-tGcCiA animate-enter1" data-id="21:72">
+                        <img class="windows-S0nGDw smart-layers-pointers smallScreen" data-id="19:63"
+                            src="./img/windows@2x.png" alt="Windows">
+                            <!--
+                        <img class="xbox-S0nGDw smart-layers-pointers smallScreen" data-id="19:64"
+                            src="./img/xbox@2x.png" alt="Xbox">
+                        <img class="switch-S0nGDw smart-layers-pointers smallScreen" data-id="19:65"
+                            src="./img/switch@2x.png" alt="Switch">
+                        <img class="steam-S0nGDw smart-layers-pointers smallScreen" data-id="34:83"
+                            src="./img/steam@2x.png" alt="Steam">
+                            -->
+                    </div>
+                    <div class="available-on-tGcCiA valign-text-middle smallScreen" data-id="19:62">Available on:</div>
+                </div>
             </div>
         </div>
-        </div>
-    </section>
+    </div>
 </body>
+
 
 </html>
