@@ -2,5 +2,5 @@
 <item>
     <version>2.0.0.0</version>
     <url>https://remnant.screwltd.com/screw_work/Release.zip</url>
-    <changelog>https://github.com/ravibpatel/AutoUpdater.NET/releases</changelog>
+    <mandatory>false</mandatory>
 </item>
