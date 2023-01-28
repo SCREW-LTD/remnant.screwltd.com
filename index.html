@@ -17,7 +17,6 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
 
-
     <style type="text/css">
         .turbo-progress-bar {
             position: fixed;
@@ -1353,12 +1352,44 @@
                 height: 0%;
             }
         }
+
+        .modal__btn {
+            margin-top: 1.5rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid hsla(0, 0%, 100%, .2);
+            border-radius: 100rem;
+
+            color: inherit;
+            background: transparent;
+            font-size: 1rem;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            letter-spacing: .1rem;
+
+            transition: .2s;
+            cursor: pointer;
+        }
+
+        .modal__btn:nth-of-type(1) {
+            margin-right: 1rem;
+        }
+
+        .modal__btn:hover,
+        .modal__btn:focus {
+            background: hsl(210, 90%, 50%);
+            border-color: hsl(210, 90%, 50%);
+            transform: translateY(-.2rem);
+        }
     </style>
+
+    <script type="text/javascript">
+        $(window).on('load', function () {
+            $('#blog').modal('show');
+        });
+    </script>
 </head>
 
 <body style="margin: 0px; background: rgb(255, 255, 255); overflow-x: hidden;" dark-scroll="">
-    <input type="hidden"
-        id="anPageName" name="page" value="frame-1">
+    <input type="hidden" id="anPageName" name="page" value="frame-1">
     <div class="container-center-horizontal">
         <div class="frame-1 screen" data-id="14:2"><img class="background-VxPVnb" data-id="22:78" src="./img/bg.png"
                 alt="BACKGROUND">
@@ -1367,7 +1398,8 @@
                     <div onclick="location.href='https://remnant.screwltd.com/'">
                         <img class="top_logo-HGz26R" data-id="15:6" src="./img/top-logo@2x.png" alt="TOP_LOGO">
                     </div>
-                    <div onclick="location.href='https://remnant.screwltd.com/store'" class="store-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
+                    <div onclick="location.href='https://remnant.screwltd.com/store'"
+                        class="store-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
                         data-id="16:12">Store</div>
                     <div onclick="location.href='https://blog.screwltd.com/'" class="news-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
                         data-id="16:13">News</div>
@@ -1467,7 +1499,30 @@
                             KEY</p>
                     </button>
                 </div>
-                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="blog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content"
+                style="background-image: linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%)); color:white;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <p
+                            style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; font-size: larger;">
+                            WE STARTED BLOGGING!</p>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;">News
+                        almost every day!<br>
+                        See the changelog and keep up to date with your favorite game directly on the website. <br>Be
+                        the first to know about releases.</p>
+                    <button onclick="location.href='https://blog.screwltd.com/'" class="modal__btn">OPEN &rarr;</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1475,9 +1530,10 @@
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
     <script>
-        $(window).on("load",function(){
-          $(".loader-wrapper").fadeOut("slow");
+        $(window).on("load", function () {
+            $(".loader-wrapper").fadeOut("slow");
         });
     </script>
 </body>
+
 </html>
