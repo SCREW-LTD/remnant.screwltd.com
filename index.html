@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>REMNANT</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <meta name="description" content="Engage in intense battles in the open beta's Deathmatch mode. Experience diverse gameplay with Sandbox and Roleplay modes. Customize characters, master skills, and survive in this immersive shooter.">
+    <meta name="description"
+        content="Engage in intense battles in the open beta's Deathmatch mode. Experience diverse gameplay with Sandbox and Roleplay modes. Customize characters, master skills, and survive in this immersive shooter.">
     <meta property="og:image" content="img/REMNANT_LOGO_full.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -61,6 +62,11 @@
             font-size: 24px;
             cursor: pointer;
             margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .burger-icon.open {
+            transform: rotate(-90deg);
         }
 
         .nav-links {
@@ -438,7 +444,9 @@
                 <p>Open beta test for everyone!<br>You can get a preview build by registering and joining our discord
                     using the button below.<br>Get unique rewards for finding bugs.<br>Let's create a game together!</p>
                 <div class="buttons">
-                    <button onclick="location.href='https://installer.launcher.xsolla.com/xlauncher-builds/xsolla-launcher-update/6209/bin/web_installer.exe'" class="btn btn-download">Download</button>
+                    <button
+                        onclick="location.href='https://installer.launcher.xsolla.com/xlauncher-builds/xsolla-launcher-update/6209/bin/web_installer.exe'"
+                        class="btn btn-download">Download</button>
                     <button id="buybtn" onclick="openPurchaseModal()" class="btn btn-buy">Buy $0.00</button>
                 </div>
             </div>
@@ -485,6 +493,7 @@
     <script>
         document.getElementById('burgerIcon').addEventListener('click', function () {
             document.querySelector('.nav-links').classList.toggle('show');
+            this.classList.toggle('open');
         });
     </script>
     <script>
