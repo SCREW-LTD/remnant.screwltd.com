@@ -1,1278 +1,316 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>REMNANT</title>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <script src="jquery-2.1.4.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-
-    <meta name="yandex-verification" content="4c4863850d25c244" />
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
-
-    <style type="text/css">
-        .turbo-progress-bar {
-            position: fixed;
-            display: block;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: #0076ff;
-            z-index: 9999;
-            transition: width 300ms ease-out, opacity 150ms 150ms ease-in;
-            transform: translate3d(0, 0, 0);
-        }
-    </style>
-    <style id="st_globalStyles">
-        /* SCROLLBAR */
-
-        [dark-scroll]::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        [dark-scroll]::-webkit-scrollbar-track-piece {
-            background-color: #2b2b2b;
-            border: 1px solid #1d1d1d;
-        }
-
-        [dark-scroll]::-webkit-scrollbar-thumb {
-            height: 10px;
-            background-color: #4d4d4d;
-        }
-
-        [dark-scroll]::-webkit-scrollbar-thumb:hover {
-            background-color: #5a5a5a;
-        }
-
-        /* LOAD PROGRESS */
-
-        .turbolinks-progress-bar {
-            height: 3px;
-            background-color: #ff6250;
-        }
-
-        /* GROUPING */
-
-        [data-id].ui-selecting {
-            box-shadow: inset 0 0 0 1px #4285f4 !important;
-        }
-
-        [data-id].ui-selected {
-            box-shadow: inset 0 0 0 1px #4285f4 !important;
-        }
-
-        /* CURSOR */
-
-        body[mode='comments'] * {
-            cursor: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00LjkxNjQ4IDIzLjQxMDlDNS40OTE1MyAyMi45ODg3IDUuOTMxNzkgMjIuMzkzNSA2LjIzMjggMjEuNjQwN0M0Ljc5MDY5IDE5LjczODMgNCAxNy4zOTMzIDQgMTQuOTk3NUM0IDguOTM0MSA4LjkzMjgyIDQgMTUuMDAyMiA0QzIxLjA3MTcgNCAyNiA4LjkzOTE5IDI2IDE1LjAwMjVDMjYgMjEuMDY1OSAyMS4wNjcyIDI2IDE0Ljk5NzggMjZDMTIuOTg5NiAyNiAxMS4wMzUzIDI1LjQ1NTcgOS4zMjM2NyAyNC40MjMxQzguNDI5NjUgMjQuOTU3MiA3LjQxNDM0IDI1LjIyNjggNi4zMDAxOCAyNS4yMjY4QzUuOTU0MjYgMjUuMjI2OCA1LjU5OTM1IDI1LjIwMTQgNS4yNTM0MiAyNS4xNDU0QzQuOTAzIDI1LjA4OTUgNC42Mjg5NiAyNC44MDQ2IDQuNTUyNTggMjQuNDE4QzQuNDc2MjEgMjQuMDI2NCA0LjYxOTk3IDIzLjYyOTYgNC45MTY0OCAyMy40MTA5WiIgZmlsbD0iI0ZGNjI1MCIvPgo8L3N2Zz4K') 0 24, auto !important;
-        }
-
-        body[mode='code'] [data-id]:not(.hidden) {
-            cursor: default;
-        }
-
-        /* default node state */
-
-        body[mode='code'] [data-id]:not(.hidden),
-        body[mode='comments'] [data-id]:not(.hidden) {
-            pointer-events: all;
-        }
-
-        /* is_image */
-
-        body[mode='code'] [data-id].is_image [data-id],
-        body[mode='comments'] [data-id].is_image [data-id] {
-            pointer-events: none !important;
-        }
-
-        /* without a data-id or ignored */
-
-        [data-id].ignore,
-        body[mode='code'] *:not([data-id]) {
-            pointer-events: none !important;
-        }
-
-        /* disable transforms for ignored elements */
-
-
-        body[mode='code'] [data-id]:hover {
-            transform: none !important;
-        }
-    </style>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=1920, maximum-scale=1.0">
-    <style id="hotspots-styles">
-        .hotspot {
-            position: absolute;
-            border: 1px solid #2a9fd8;
-            background: rgba(0, 173, 255, 0.54);
-            opacity: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-    </style>
-    <script>
-        function border(color) {
-            document.getElementById('white_btn').style.backgroundColor = color;
-        }
-        function text(color) {
-            document.getElementById('white_btn_text').style.color = color;
-        }
-    </script>
+    <meta name="description" content="Engage in intense battles in the open beta's Deathmatch mode. Experience diverse gameplay with Sandbox and Roleplay modes. Customize characters, master skills, and survive in this immersive shooter.">
+    <meta property="og:image" content="img/REMNANT_LOGO_full.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-
-        @import url("https://fonts.googleapis.com/css?family=Inter:300,500,600");
-
-        /* The following line is used to measure usage of this code in production. For more info see our usage billing page */
-        @import url("https://px.animaapp.com/62a36ca626273055208f6655.62a36ca7537bee57e8258984.9YnTRGZ.hch.png");
-
-
-        .btn-outline {
-            border: 2px solid black;
-            background-color: white;
-            color: black;
-            padding: 14px 28px;
-            font-size: 16px;
-            cursor: pointer;
-            border-color: #FFF;
-            color: white;
-        }
-
-        .screen textarea:focus,
-        .screen input:focus {
-            outline: none;
-        }
-
-        .screen * {
-            -webkit-font-smoothing: antialiased;
-            box-sizing: border-box;
-        }
-
-        .screen div {
-            -webkit-text-size-adjust: none;
-        }
-
-        .component-wrapper a {
-            display: contents;
-            pointer-events: auto;
-            text-decoration: none;
-        }
-
-        .component-wrapper * {
-            -webkit-font-smoothing: antialiased;
-            box-sizing: border-box;
-            pointer-events: none;
-        }
-
-        .component-wrapper a *,
-        .component-wrapper input,
-        .component-wrapper video,
-        .component-wrapper iframe {
-            pointer-events: auto;
-        }
-
-        .component-wrapper.not-ready,
-        .component-wrapper.not-ready * {
-            visibility: hidden !important;
-        }
-
-        .screen a {
-            display: contents;
-            text-decoration: none;
-        }
-
-        .full-width-a {
-            width: 100%;
-        }
-
-        .full-height-a {
-            height: 100%;
-        }
-
-        .container-center-vertical {
-            align-items: center;
-            display: flex;
-            flex-direction: row;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .container-center-vertical>* {
-            flex-shrink: 0;
-            pointer-events: auto;
-        }
-
-        .container-center-horizontal {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            pointer-events: none;
-            width: 100%;
-        }
-
-        .container-center-horizontal>* {
-            flex-shrink: 0;
-            pointer-events: auto;
-        }
-
-        .auto-animated div {
-            --z-index: -1;
-            opacity: 0;
-            position: absolute;
-        }
-
-        .auto-animated input {
-            --z-index: -1;
-            opacity: 0;
-            position: absolute;
-        }
-
-        .auto-animated .container-center-vertical,
-        .auto-animated .container-center-horizontal {
-            opacity: 1;
-        }
-
-        .overlay {
-            display: none;
-            height: 100%;
-            opacity: 0;
+        body::before {
+            content: "";
+            display: block;
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-        }
-
-        .overlay.animate-appear {
-            animation: reveal 0.3s ease-in-out 1 normal forwards;
-            display: block;
-            opacity: 0;
-        }
-
-        .overlay.animate-disappear {
-            animation: reveal 0.3s ease-in-out 1 reverse forwards;
-            display: block;
-            opacity: 1;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 997;
             pointer-events: none;
         }
 
-        .overlay.animate-disappear * {
-            pointer-events: none;
-        }
-
-        @keyframes reveal {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .animate-nodelay {
-            animation-delay: 0s;
-        }
-
-        .align-self-flex-start {
-            align-self: flex-start;
-        }
-
-        .align-self-flex-end {
-            align-self: flex-end;
-        }
-
-        .align-self-flex-center {
-            align-self: flex-center;
-        }
-
-        .valign-text-middle {
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            background: url('img/bg.png') no-repeat center center fixed;
+            background-size: cover;
         }
 
-        .valign-text-bottom {
+        header {
+            background-color: rgba(0, 0, 0, 0);
+            padding: 20px;
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-        .listeners-active,
-        .listeners-active * {
-            pointer-events: auto;
-        }
-
-        .hidden,
-        .hidden * {
-            pointer-events: none;
-            visibility: hidden;
-        }
-
-        .smart-layers-pointers,
-        .smart-layers-pointers * {
-            pointer-events: auto;
-            visibility: visible;
-        }
-
-        .listeners-active-click,
-        .listeners-active-click * {
-            cursor: pointer;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        :root {
-            --black: #000000;
-            --white: #ffffff;
-            --white-2: #ffffffb2;
-            --font-size-l: 96px;
-            --font-size-m: 20px;
-            --font-size-s: 14px;
-            --font-family-inter: "Inter", Helvetica;
-        }
-
-        .inter-light-white-20px {
-            color: var(--white-2);
-            font-family: var(--font-family-inter);
-            font-size: var(--font-size-m);
-            font-style: normal;
-            font-weight: 300;
-        }
-
-        :root {}
-
-
-        /* screen - frame-1 */
-
-        .frame-1 {
-            background-color: var(--black);
-            border: 1px none;
-            height: 100%;
-            mix-blend-mode: normal;
-            overflow: hidden;
-            overflow-x: hidden;
-            position: absolute;
-            width: 100%;
-        }
-
-        .frame-1 .background-VxPVnb {
-            background-color: transparent;
-            height: 100%;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            opacity: 0.4;
-            position: absolute;
-            top: 0px;
-            width: 100%;
-            pointer-events: none;
-        }
-
-        .frame-1 .top-VxPVnb {
-            background-color: transparent;
-            border: 1px none;
-            height: 100px;
-            left: 0px;
-            overflow: hidden;
-            position: relative;
-            top: 3%;
-            width: 100%;
-        }
-
-        .frame-1 .left-F3Iuu3 {
-            background-color: transparent;
-            border: 1px none;
-            display: block;
-            height: 100px;
-            left: 40px;
-            opacity: 0;
-            overflow: hidden;
-            position: relative;
-            top: 0px;
-            transform: translate(0, -25px);
-            width: 547px;
-        }
-
-        .frame-1 .left-F3Iuu3.animate-enter {
-            animation: animate-enter-frames 0.50s ease-in-out 0.30s 1 normal forwards;
-            display: block;
-            opacity: 0;
-            transform: translate(0, -25px);
-        }
-
-        @keyframes animate-enter-frames {
-            from {
-                opacity: 0;
-                transform: translate(0, -25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translate(0, 0);
-            }
-        }
-
-        .frame-1 .top_logo-HGz26R {
-            background-color: transparent;
-            height: 100px;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            position: absolute;
-            top: 0px;
-            width: 100px;
-            cursor: no-drop;
-        }
-
-        .frame-1 .top_logo-ukr {
-            background-color: transparent;
-            height: 50px;
-            right: 70px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            position: absolute;
-            top: 20px;
-            display: none;
-            width: 50px;
-        }
-
-        .frame-1 .store-HGz26R {
-            background-color: transparent;
-            cursor: pointer;
-            height: 24px;
-            left: 135px;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
-            pointer-events: auto;
-            position: absolute;
-            text-align: center;
-            top: 37px;
-            transition: all 0.2s ease;
-            width: auto;
-        }
-
-        .frame-1 .store-HGz26R:hover {
-            color: #ffffff
-        }
-
-        .frame-1 .news-HGz26R {
-            background-color: transparent;
-            cursor: pointer;
-            height: 24px;
-            left: 220px;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
-            pointer-events: auto;
-            position: absolute;
-            text-align: center;
-            top: 37px;
-            transition: all 0.2s ease;
-            width: auto;
-        }
-
-        .frame-1 .news-HGz26R:hover {
-            color: #ffffff
-        }
-
-        .frame-1 .media-HGz26R {
-            background-color: transparent;
-            cursor: pointer;
-            height: 24px;
-            left: 309px;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
-            pointer-events: auto;
-            position: absolute;
-            text-align: center;
-            top: 37px;
-            transition: all 0.2s ease;
-            width: auto;
-        }
-
-        .frame-1 .media-HGz26R:hover {
-            color: #ffffff
-        }
-
-        .frame-1 .developers-HGz26R {
-            background-color: transparent;
-            cursor: pointer;
-            height: 24px;
-            left: 436px;
-            letter-spacing: 0.00px;
-            line-height: normal;
-            mix-blend-mode: normal;
-            pointer-events: auto;
-            position: absolute;
-            text-align: center;
-            top: 37px;
-            transition: all 0.2s ease;
-            width: auto;
-        }
-
-        .frame-1 .developers-HGz26R:hover {
-            color: #ffffff
-        }
-
-        .frame-1 .logo_right-VxPVnb {
-            background-color: transparent;
-            height: 100%;
-            right: -120px;
-            margin: 0 auto;
-            mix-blend-mode: normal;
-            object-fit: cover;
+            justify-content: space-between;
+            align-items: center;
             position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 70%;
+            width: 100%;
+            z-index: 998;
         }
 
-        .frame-1 .platforms-VxPVnb {
-            background-color: transparent;
-            border: 1px none;
-            display: block;
-            height: 58px;
-            opacity: 0;
-            overflow: hidden;
-            position: relative;
-            top: 480px;
-            transform: translate(0, -25px);
-            width: 554px;
+        .logo {
+            text-decoration: none;
+            margin: 0;
         }
 
-        .frame-1 .platforms-VxPVnb.animate-enter2 {
-            animation: animate-enter2-frames 0.50s ease-in-out 0.55s 1 normal forwards;
-            display: block;
-            opacity: 0;
-            transform: translate(0, -25px);
-        }
-
-        @keyframes animate-enter2-frames {
-            from {
-                opacity: 0;
-                transform: translate(0, -25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translate(0, 0);
-            }
-        }
-
-        .frame-1 .icons-tGcCiA {
-            background-color: transparent;
-            border: 1px none;
-            display: block;
-            height: 28px;
-            left: 0px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            top: 30px;
-            width: 554px;
-        }
-
-        .frame-1 .icons-tGcCiA.animate-enter1 {
-            animation: animate-enter1-frames 0.70s ease-in-out 1.00s 1 normal forwards;
-            display: block;
-            opacity: 0;
-        }
-
-        @keyframes animate-enter1-frames {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .frame-1 .windows-S0nGDw {
-            background-color: transparent;
-            cursor: pointer;
-            height: 28px;
-            left: 0px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.3s ease;
-            width: 150px;
-        }
-
-        .frame-1 .windows-S0nGDw:hover {
-            transform: scale(0.95);
-        }
-
-        .frame-1 .xbox-S0nGDw {
-            background-color: transparent;
-            cursor: pointer;
-            height: 28px;
-            left: 175px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.3s ease;
-            width: 91px;
-        }
-
-        .frame-1 .xbox-S0nGDw:hover {
-            transform: scale(0.95);
-        }
-
-        .frame-1 .switch-S0nGDw {
-            background-color: transparent;
-            cursor: pointer;
-            height: 28px;
-            left: 291px;
-            mix-blend-mode: normal;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.3s ease;
-            width: 124px;
-        }
-
-        .frame-1 .switch-S0nGDw:hover {
-            transform: scale(0.95);
-        }
-
-        .frame-1 .steam-S0nGDw {
-            background-color: transparent;
-            cursor: pointer;
-            height: 28px;
-            left: 440px;
-            mix-blend-mode: normal;
-            object-fit: cover;
-            pointer-events: auto;
-            position: absolute;
-            top: 0px;
-            transition: all 0.3s ease;
-            width: 114px;
-        }
-
-        .frame-1 .steam-S0nGDw:hover {
-            transform: scale(0.95);
-        }
-
-        @media (max-aspect-ratio: 4/3) {
-            .forn-three {
-                display: none;
-            }
-        }
-
-        .frame-1 .available-on-tGcCiA {
-            background-color: transparent;
-            color: var(--white-2);
-            font-family: var(--font-family-inter);
-            font-size: var(--font-size-s);
-            font-style: normal;
-            font-weight: 300;
-            height: 15px;
-            left: 0px;
-            letter-spacing: 0.00px;
-            line-height: 15.4px;
-            mix-blend-mode: normal;
-            position: absolute;
-            text-align: center;
-            top: -1px;
-            white-space: nowrap;
-            width: auto;
-        }
-
-        @media (pointer:none),
-        (pointer:coarse) {
-
-            html,
-            body {
-                margin: 0;
-                height: 100%;
-                overflow: hidden
-            }
-
-            .mobileScreen {
-                display: none;
-            }
-        }
-
-        @media only screen and (max-width: 1599px) {
-            .smallScreen {
-                display: none;
-            }
-        }
-
-        @media only screen and (max-width: 1281px) {
-            .medScreen {
-                display: none;
-            }
-        }
-
-        .frame-1 .info-VxPVnb {
-            background-color: transparent;
-            border: 1px none;
-            height: 600px;
-            left: 90px;
-            overflow: hidden;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 636px;
-        }
-
-        .frame-1 .btns-5bQ3Rg {
-            background-color: transparent;
-            border: 1px none;
-            display: block;
-            height: 70px;
-            left: 0px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            top: 365px;
-            transform: translate(0, -25px);
-            width: 588px;
-        }
-
-        .frame-1 .btns-5bQ3Rg.animate-enter3 {
-            animation: animate-enter3-frames 0.50s ease-in-out 0.50s 1 normal forwards;
-            display: block;
-            opacity: 0;
-            transform: translate(0, -25px);
-        }
-
-        @keyframes animate-enter3-frames {
-            from {
-                opacity: 0;
-                transform: translate(0, -25px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translate(0, 0);
-            }
-        }
-
-        .frame-1 .play-BR4TFE {
-            background-color: transparent;
-            border: 1px none;
-            height: 70px;
-            left: 304px;
-            overflow: hidden;
-            position: absolute;
-            top: 0px;
-            width: 284px;
-        }
-
-        .frame-1 .play-BR4TFE:hover {
-            cursor: pointer;
-        }
-
-
-        .frame-1 .rectangle-3-NJ5xRw {
-            background-color: transparent;
-            border: 2px solid;
-            border-color: var(--white);
-            border-radius: 15px;
-            height: 70px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 284px;
-        }
-
-        .frame-1 .play-NJ5xRw {
-            background-color: transparent;
-            color: var(--white);
-            font-family: var(--font-family-inter);
-            font-size: var(--font-size-m);
-            font-style: normal;
-            font-weight: 500;
-            height: 70px;
-            left: 0px;
-            letter-spacing: 0.00px;
-            line-height: 22.0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            text-align: center;
-            top: -1px;
-            width: 284px;
-        }
-
-        .frame-1 .buy-BR4TFE {
-            background-color: transparent;
-            border: 1px none;
-            height: 70px;
-            left: 0px;
-            overflow: hidden;
-            position: absolute;
-            top: 0px;
-            width: 284px;
-        }
-
-        .frame-1 .buy-BR4TFE:hover {
-            cursor: pointer;
-        }
-
-        .frame-1 .rectangle-3-S2joqj {
-            background-color: var(--white);
-            border: 2px none;
-            border-radius: 15px;
-            height: 70px;
-            left: 0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            top: 0px;
-            width: 284px;
-        }
-
-        .frame-1 .buy-now-S2joqj {
-            background-color: transparent;
-            color: var(--black);
-            font-family: var(--font-family-inter);
-            font-size: var(--font-size-m);
-            font-style: normal;
-            font-weight: 500;
-            height: 70px;
-            left: 0px;
-            letter-spacing: 0.00px;
-            line-height: 22.0px;
-            mix-blend-mode: normal;
-            position: absolute;
-            text-align: center;
-            top: -1px;
-            width: 284px;
-        }
-
-        .frame-1 .it-is-a-long-establi-5bQ3Rg {
-            background-color: transparent;
-            color: var(--white);
-            display: block;
-            font-family: var(--font-family-inter);
-            font-size: var(--font-size-m);
-            font-style: normal;
-            font-weight: 300;
+        .logo img {
+            width: 80px;
             height: auto;
-            left: 0px;
-            letter-spacing: 0.00px;
-            line-height: 22.0px;
-            mix-blend-mode: normal;
-            opacity: 0;
-            position: absolute;
-            text-align: left;
-            top: 231px;
-            transform: translate(0, -25px);
-            width: 636px;
-            pointer-events: none;
         }
 
-        .frame-1 .it-is-a-long-establi-5bQ3Rg.animate-enter4 {
-            animation: animate-enter4-frames 0.50s ease-in-out 0.45s 1 normal forwards;
-            display: block;
-            opacity: 0;
-            transform: translate(0, -25px);
+        .burger-icon {
+            display: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 12px;
         }
 
-        @keyframes animate-enter4-frames {
-            from {
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            margin-right: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.5s ease-in-out;
+        }
+
+        .nav-link:hover,
+        .nav-link:active {
+            color: #fff;
+            transition: color 0.5s ease-in-out;
+        }
+
+        .content {
+            text-align: center;
+            color: #fff;
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 998;
+        }
+
+        .left-content {
+            flex: 1;
+        }
+
+        .right-content {
+            flex: 1;
+            margin-right: 120px;
+        }
+
+        .right-content iframe {
+            width: 100vh;
+            height: 80vh;
+        }
+
+
+        @media only screen and (max-width: 768px) {
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                border-radius: 10px;
+                background-color: #1e2124;
                 opacity: 0;
-                transform: translate(0, -25px);
+                transform: translateY(-100%);
+                transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             }
 
-            to {
+            .nav-links.show {
                 opacity: 1;
-                transform: translate(0, 0);
+                transform: translateY(95px);
+                transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
             }
-        }
 
-        .frame-1 .remnant-open-beta-5bQ3Rg {
-            background-color: transparent;
-            color: var(--white);
-            display: block;
-            font-family: var(--font-family-inter);
-            font-size: var(--font-size-l);
-            font-style: normal;
-            font-weight: 600;
-            height: 212px;
-            left: 0px;
-            letter-spacing: 0.00px;
-            line-height: 105.6px;
-            mix-blend-mode: normal;
-            opacity: 0;
-            position: absolute;
-            text-align: left;
-            top: -1px;
-            transform: translate(0, -25px);
-            width: auto;
-            pointer-events: none;
-        }
-
-        .frame-1 .remnant-open-beta-5bQ3Rg.animate-enter5 {
-            animation: animate-enter5-frames 0.50s ease-in-out 0.40s 1 normal forwards;
-            display: block;
-            opacity: 0;
-            transform: translate(0, -25px);
-        }
-
-        @keyframes animate-enter5-frames {
-            from {
+            .nav-link {
+                margin: 10px;
                 opacity: 0;
-                transform: translate(0, -25px);
+                transition: opacity 0.5s ease-in-out;
             }
 
-            to {
+            .nav-links.show .nav-link {
                 opacity: 1;
-                transform: translate(0, 0);
+                transition: opacity 0.5s ease-in-out;
+            }
+
+            .burger-icon {
+                display: block;
+            }
+
+            .logo {
+                text-align: center;
+            }
+
+            .content {
+                flex-direction: column-reverse;
+                margin-top: 250px;
+            }
+
+            .left-content {
+                width: 100%;
+                margin: 10px 0;
+                margin-top: 45px;
+            }
+
+            .right-content {
+                width: 100%;
+                margin: 10px 0;
+                margin-top: -160px;
+            }
+
+            .right-content iframe {
+                width: 100%;
+                height: 40vh;
             }
         }
     </style>
-    <style id="action-links-styles">
-        @import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
-
-        #anima-interface {
-            transition: all 0.5s ease-in-out;
-        }
-
-        #anima-watermark {
-            transition: all 0.5s ease-in-out;
-            display: none;
-        }
-
-        #anima-watermark-link {
-            position: fixed;
-            bottom: 20px;
-            height: 30px;
-            border-radius: 1000px;
-            background: #3B3B3B;
+    <style>
+        .content {
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            user-select: none;
-            transition: width 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275);
-            text-decoration: none;
-            color: #fff;
-            padding: 8px 16px 8px 11px;
-            font-family: Mulish, sans-serif;
-            font-size: 12px;
+            height: 100vh;
         }
 
-        #anima-watermark-link .text {
-            margin-left: 6px;
+        .centered-content {
+            text-align: left;
+            margin-left: 100px;
+            margin-right: 100px;
+            max-width: 600px;
+            margin-bottom: 60px
         }
 
-        .omniview-anima-action-links .link {
-            height: 30px;
-            width: 30px;
-            border-radius: 1000px;
-            background: #3B3B3B;
+        .centered-content h1 {
+            font-size: 6em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+
+        .centered-content p {
+            font-size: 1.4em;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            justify-content: left;
+        }
+
+        .btn {
+            width: 250px;
+            height: 70px;
+            padding: 15px 30px;
+            font-size: 1em;
             cursor: pointer;
-            user-select: none;
-            transition: width 0.25s cubic-bezier(0.175, 0.885, 0.320, 1.275);
-            text-decoration: none;
-            color: #fff;
+            border: none;
+            border-radius: 12px;
+            transition: background-color 0.3s;
         }
 
-        .omniview-anima-action-links #comment-link .text,
-        .omniview-anima-action-links #code-link .text {
-            display: none;
-            font-size: 12px;
-            margin-right: 5px;
-        }
-
-        .omniview-anima-action-links #comment-link:hover,
-        .omniview-anima-action-links #code-link:hover {
-            width: 105px;
-        }
-
-        .omniview-anima-action-links #comment-link.pop-active,
-        .omniview-anima-action-links #code-link.pop-active {
-            width: 105px;
-            background: #FF6250;
-        }
-
-        .omniview-anima-action-links #comment-link.pop-active .text,
-        .omniview-anima-action-links #code-link.pop-active .text {
-            display: block
-        }
-
-        .omniview-anima-action-links #comment-link:hover .text,
-        .omniview-anima-action-links #code-link:hover .text {
-            display: block;
-        }
-
-        .link.navigation {
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            width: auto;
-            height: 32px;
-            color: #fff;
-            font-size: 12px;
-            cursor: default;
-            padding: 0 5px;
-        }
-
-        .link.navigation .icon {
-            margin: 0 6px;
-            fill: none;
-            stroke: currentColor;
-            cursor: pointer;
-        }
-
-        .link.navigation .icon.disabled {
-            opacity: 0.5;
-            cursor: default;
-        }
-
-
-        .link.navigation .home-icon {
-            margin-left: 6px;
-            fill: currentColor;
-            stroke: currentColor;
-            cursor: pointer;
-        }
-
-        .omniview-anima-action-links .restart {
-            height: 30px;
-            padding: 0 12px;
-            background: #3B3B3B;
-            border-radius: 1000px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #f1f1f1;
-            font-size: 12px;
-        }
-
-        .omniview-anima-action-links {
-            display: flex;
-            align-items: center;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-family: Mulish, sans-serif;
-            transition: all 0.5s ease-in-out;
-            opacity: 1;
-        }
-
-        .omniview-anima-action-links>*+* {
-            margin-right: 0;
-            margin-left: 10px;
-        }
-
-        .idle {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #popoverOpener {
-            position: absolute;
-            left: 50%;
-            margin-left: -10vw;
-            text-align: center;
-            top: 45vh;
-            width: 20vw;
-        }
-
-
-        .popover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1060;
-            display: none;
-            font-family: "sans-serif";
-            font-size: 14px;
+        .btn-download {
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+            color: #1b1b1b;
+            margin-right: 25px;
+            font-weight: 600;
+            font-size: 1.4em;
         }
 
-        .popover.top {
-            margin-top: -12px
+        .btn-buy {
+            background-color: #fff;
+            color: #1b1b1b;
+            font-weight: 600;
+            font-size: 1.4em;
         }
 
-        .popover.right {
-            margin-left: 10px
+        .btn:hover {
+            background-color: #c7c7c7;
         }
 
-        .popover.bottom {
-            margin-top: 10px
+        .btn:active,
+        .btn:focus {
+            outline: none;
+            box-shadow: none;
         }
 
-        .popover.left {
-            margin-left: -10px
+        @media only screen and (max-width: 768px) {
+            .buttons {
+                flex-direction: column;
+                align-items: stretch;
+                margin-top: 20px;
+            }
+
+            .btn {
+                width: auto;
+                padding: 10px 20px;
+                margin-bottom: 10px;
+                height: 60px;
+            }
+
+            .btn-download {
+                margin-right: 0px;
+                font-weight: 500;
+                font-size: 1.2em;
+            }
+
+            .btn-buy {
+                font-weight: 500;
+                font-size: 1.2em;
+            }
+
+            .centered-content {
+                margin-left: 40px;
+                margin-right: 40px;
+            }
+
+            .centered-content h1 {
+                font-size: 3em;
+                margin-bottom: 10px;
+            }
+
+            .centered-content p {
+                font-size: 1em;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+
+    <style>
+        .modal-custom {
+            max-width: 540px;
+            background-color: #282b30;
         }
 
-        .popover-title {
-            padding: 8px 14px;
-            margin: 0;
-            font-size: 14px;
-            background-color: #f7f7f7;
-            border-bottom: 1px solid #ebebeb;
-            border-radius: 5px 5px 0 0
+        .modal-custom .modal-content {
+            padding: 0;
         }
 
-        .popover-content {
-            height: 100%;
-            width: 100%;
+        .modal-custom .modal-body {
+            padding: 0;
+            background-color: #282b30;
+        }
+
+        .modal-footers {
             display: flex;
-            overflow: hidden;
-            font-family: Mulish, sans-serif;
-        }
-
-
-
-        .popover>.arrow,
-        .popover>.arrow:after {
-            position: absolute;
-            display: block;
-            width: 0;
-            height: 0;
-            border-color: transparent;
-            border-style: solid
-        }
-
-        .popover>.arrow {
-            border-width: 11px
-        }
-
-        .popover>.arrow:after {
-            content: "";
-            border-width: 10px
-        }
-
-        .popover.top>.arrow {
-            bottom: -11px;
-            left: 50%;
-            margin-left: -11px;
-            border-top-color: #999;
-            border-top-color: rgba(0, 0, 0, .25);
-            border-bottom-width: 0
-        }
-
-        .popover.top>.arrow:after {
-            bottom: 1px;
-            margin-left: -10px;
-            content: " ";
-            border-top-color: #fff;
-            border-bottom-width: 0
-        }
-
-        .popover.right>.arrow {
-            top: 50%;
-            left: -11px;
-            margin-top: -11px;
-            border-right-color: #999;
-            border-right-color: rgba(0, 0, 0, .25);
-            border-left-width: 0
-        }
-
-        .popover.right>.arrow:after {
-            bottom: -10px;
-            left: 1px;
-            content: " ";
-            border-right-color: #fff;
-            border-left-width: 0
-        }
-
-        .popover.bottom>.arrow {
-            top: -11px;
-            left: 50%;
-            margin-left: -11px;
-            border-top-width: 0;
-            border-bottom-color: #999;
-            border-bottom-color: rgba(0, 0, 0, .25)
-        }
-
-        .popover.bottom>.arrow:after {
-            top: 1px;
-            margin-left: -10px;
-            content: " ";
-            border-top-width: 0;
-            border-bottom-color: #fff
-        }
-
-        .popover.left>.arrow {
-            top: 50%;
-            right: -11px;
-            margin-top: -11px;
-            border-right-width: 0;
-            border-left-color: #999;
-            border-left-color: rgba(0, 0, 0, .25)
-        }
-
-        .popover.left>.arrow:after {
-            right: 1px;
-            bottom: -10px;
-            content: " ";
-            border-right-width: 0;
-            border-left-color: #fff
-        }
-
-
-
-        #anima-comment-popover,
-        #anima-code-popover {
-            background: #333333;
-            color: #fff;
-        }
-
-        #anima-comment-popover.top>.arrow,
-        #anima-comment-popover.top>.arrow:after,
-        #anima-code-popover.top>.arrow:after,
-        #anima-code-popover.top>.arrow {
-            border-top-color: #333;
-        }
-
-        #anima-comment-popover .btn,
-        #anima-code-popover .btn {
-            display: flex;
-            flex-direction: row;
+            justify-content: center;
             align-items: center;
-            padding: 6px 20px;
-            background: #FF6250;
-            color: #fff;
-            border-radius: 100px;
-            width: max-content;
-            text-decoration: none;
+            height: 100%;
+            background-color: #282b30;
         }
 
-        @media screen and (max-width: 550px) {
-            #anima-watermark-link {
-                padding: 6px !important;
-            }
-
-            #anima-watermark-link .text {
-                display: none !important;
-            }
+        #copyright {
+            padding-top: 14px;
+            color: gray;
+            display: inline-block;
+            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
 
@@ -1287,6 +325,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 999;
         }
 
         .loader {
@@ -1375,120 +414,37 @@
             transform: translateY(-.2rem);
         }
     </style>
-
-    <style>
-        .modal-custom {
-            max-width: 540px;
-            background-color: #282b30;
-        }
-
-        .modal-custom .modal-content {
-            padding: 0;
-        }
-
-        .modal-custom .modal-body {
-            padding: 0;
-            background-color: #282b30;
-        }
-
-        .modal-footers {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            background-color: #282b30;
-        }
-
-        #copyright {
-            padding-top: 14px;
-            color: gray;
-            display: inline-block;
-            padding-bottom: 14px;
-            font-family:Arial, Helvetica, sans-serif;
-        }
-    </style>
-
-    <script type="text/javascript">
-        $(window).on('load', function () {
-            //$('#blog').modal('show');
-        });
-    </script>
-
-    <script>
-        fetch('https://store.xsolla.com/api/v2/project/219525/items/game/sku/REMNANT_beta_paid1')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('white_btn_text').innerText = 'Buy $' + data.unit_items[0].price.amount;
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    </script>
 </head>
 
-<body style="margin: 0px; background: rgb(255, 255, 255); overflow-x: hidden;" dark-scroll="">
-    <input type="hidden" id="anPageName" name="page" value="frame-1">
-    <div class="container-center-horizontal">
-        <div class="frame-1 screen" data-id="14:2"><img class="background-VxPVnb" data-id="22:78" src="./img/bg.png"
-                alt="BACKGROUND">
-            <div class="top-VxPVnb mobileScreen" data-id="15:5">
-                <div class="left-F3Iuu3 animate-enter" data-id="22:75">
-                    <div onclick="location.href='https://remnant.screwltd.com/'">
-                        <img class="top_logo-HGz26R" data-id="15:6" src="./img/top-logo@2x.png" alt="TOP_LOGO">
-                    </div>
-                    <div onclick="location.href='https://restore.screwltd.com/'"
-                        class="store-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
-                        data-id="16:12">Store</div>
-                    <div onclick="location.href='https://blog.screwltd.com/'"
-                        class="news-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
-                        data-id="16:13">News</div>
-                    <div class="media-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
-                        data-id="16:14">Road map</div>
-                    <div onclick="location.href='https://screwltd.com/'"
-                        class="developers-HGz26R smart-layers-pointers valign-text-middle inter-light-white-20px"
-                        data-id="16:15">Developers</div>
-                </div>
-                <img class="top_logo-ukr" data-id="15:6" src="./img/ukr.png">
-            </div>
-            <div class="logo_right-VxPVnb forn-three smallScreen" data-id="21:70">
-                <iframe src='anim.html' frameborder='0' width='100%' height='100%'></iframe>
-            </div>
-            <div class="info-VxPVnb" data-id="22:74">
-                <div class="btns-5bQ3Rg animate-enter3" data-id="34:81">
-                    <div id="openPurchase" onclick="openPurchaseModal()" onmouseover="border('white'); text('black')"
-                        onmouseout="border('transparent'), text('white')" class="play-BR4TFE" data-id="19:57">
-                        <div id="white_btn" class="rectangle-3-NJ5xRw" data-id="19:58"></div>
-                        <div id="white_btn_text" class="play-NJ5xRw valign-text-middle" data-id="19:61">Buy $0.00</div>
-                    </div>
-                    <div data-bs-toggle="modal"
-                        onclick="location.href='https://installer.launcher.xsolla.com/xlauncher-builds/xsolla-launcher-update/6209/bin/web_installer.exe'"
-                        class="buy-BR4TFE" data-id="18:55">
-                        <div class="rectangle-3-S2joqj" data-id="18:56"></div>
-                        <div class="buy-now-S2joqj valign-text-middle" data-id="19:59">Download</div>
-                    </div>
-
-                </div>
-                <div class="it-is-a-long-establi-5bQ3Rg animate-enter4" data-id="17:31">Open beta test for everyone!
-                    <br>You can get a preview build by registering and joining our discord using the button below.
-                    <br>Get unique rewards for finding bugs.<br>Let's create a game together!
-                </div>
-                <h1 class="remnant-open-beta-5bQ3Rg valign-text-middle animate-enter5" data-id="17:30">REMNANT<br>OPEN
-                    BETA</h1>
-
-                <div class="platforms-VxPVnb animate-enter2" data-id="21:73">
-                    <div class="icons-tGcCiA animate-enter1" data-id="21:72">
-                        <img class="windows-S0nGDw smart-layers-pointers smallScreen" data-id="19:63"
-                            src="./img/windows@2x.png" alt="Windows">
-                        <!--
-                        <img class="xbox-S0nGDw smart-layers-pointers smallScreen" data-id="19:64"
-                            src="./img/xbox@2x.png" alt="Xbox">
-                        <img class="switch-S0nGDw smart-layers-pointers smallScreen" data-id="19:65"
-                            src="./img/switch@2x.png" alt="Switch">
-                        <img class="steam-S0nGDw smart-layers-pointers smallScreen" data-id="34:83"
-                            src="./img/steam@2x.png" alt="Steam">
-                            -->
-                    </div>
-                    <div class="available-on-tGcCiA valign-text-middle smallScreen" data-id="19:62">Available on:</div>
+<body>
+    <header>
+        <a href="https://remnant.screwltd.com/" class="logo">
+            <img src="img/top-logo@2x.png" alt="Your Logo">
+        </a>
+        <div class="burger-icon" id="burgerIcon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="https://restore.screwltd.com/" class="nav-link">Store</a></li>
+            <li><a href="https://blog.screwltd.com/" class="nav-link">News</a></li>
+            <li><a href="#" class="nav-link">Road map</a></li>
+            <li><a href="https://screwltd.com/" class="nav-link">Developers</a></li>
+        </ul>
+    </header>
+    <div class="content">
+        <div class="left-content">
+            <div class="centered-content">
+                <h1>REMNANT<br>OPEN BETA</h1>
+                <p>Open beta test for everyone!<br>You can get a preview build by registering and joining our discord
+                    using the button below.<br>Get unique rewards for finding bugs.<br>Let's create a game together!</p>
+                <div class="buttons">
+                    <button onclick="location.href='https://installer.launcher.xsolla.com/xlauncher-builds/xsolla-launcher-update/6209/bin/web_installer.exe'" class="btn btn-download">Download</button>
+                    <button id="buybtn" onclick="openPurchaseModal()" class="btn btn-buy">Buy $0.00</button>
                 </div>
             </div>
+        </div>
+        <div class="right-content">
+            <iframe src="anim.html" frameborder="0"></iframe>
         </div>
     </div>
 
@@ -1512,41 +468,48 @@
         </div>
     </div>
 
-    <div class="modal fade" id="blog" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content"
-                style="background-image: linear-gradient(to right, hsl(210, 30%, 20%), hsl(255, 30%, 25%)); color:white;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <p
-                            style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; font-size: larger;">
-                            WE STARTED BLOGGING!</p>
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;">News
-                        almost every day!<br>
-                        See the changelog and keep up to date with your favorite game directly on the website. <br>Be
-                        the first to know about releases.</p>
-                    <button onclick="location.href='https://blog.screwltd.com/'" class="modal__btn">OPEN &rarr;</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="loader" class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function openPurchaseModal() {
+            console.log('Modal function called');
+            $('#purchaseModal').modal('show');
+        }
+    </script>
+    <script>
+        document.getElementById('burgerIcon').addEventListener('click', function () {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+    </script>
+    <script>
+        function updateIframeSrc() {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.right-content iframe').src = "mobile-anim.html";
+            } else {
+                document.querySelector('.right-content iframe').src = "anim.html";
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateIframeSrc);
+        window.addEventListener('resize', updateIframeSrc);
+    </script>
+    <script>
+        fetch('https://store.xsolla.com/api/v2/project/219525/items/game/sku/REMNANT_beta_paid1')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('buybtn').innerText = 'Buy $' + data.unit_items[0].price.amount;
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
     <script>
         $(window).on("load", function () {
             $(".loader-wrapper").fadeOut("slow");
         });
-    </script>
-    <script>
-        function openPurchaseModal() {
-            $('#purchaseModal').modal('show');
-        }
     </script>
 </body>
 
