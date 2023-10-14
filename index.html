@@ -247,6 +247,17 @@
             box-shadow: none;
         }
 
+        .centered-content a {
+            color: rgb(255, 32, 32);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .centered-content a:hover,
+        .centered-content a:active {
+            color: rgb(255, 96, 96);
+        }
+
         @media only screen and (max-width: 768px) {
             .buttons {
                 flex-direction: column;
@@ -265,6 +276,7 @@
                 margin-right: 0px;
                 font-weight: 500;
                 font-size: 1.2em;
+                display: none;
             }
 
             .btn-buy {
@@ -441,12 +453,13 @@
         <div class="left-content">
             <div class="centered-content">
                 <h1>REMNANT<br>OPEN BETA</h1>
-                <p>Open beta test for everyone!<br>You can get a preview build by registering and joining our discord
-                    using the button below.<br>Get unique rewards for finding bugs.<br>Let's create a game together!</p>
+                <p>Open beta test for everyone!<br>You can get a preview build by registering and joining our <a
+                        href="https://screwltd.com/discord" target="_blank">Discord</a>.<br>Get unique rewards for finding bugs.<br>Let's create a game together!
+                </p>
                 <div class="buttons">
                     <button
                         onclick="location.href='https://installer.launcher.xsolla.com/xlauncher-builds/xsolla-launcher-update/6209/bin/web_installer.exe'"
-                        class="btn btn-download">Download</button>
+                        class="btn btn-download"><i class="fab fa-windows"></i> Download</button>
                     <button id="buybtn" onclick="openPurchaseModal()" class="btn btn-buy">Buy $0.00</button>
                 </div>
             </div>
